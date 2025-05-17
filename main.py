@@ -14,6 +14,8 @@ print(f'''
       1.Check Stats.
       2.Tavern.
       3.Fight.
+      4.Shop.
+      5.Shell Game.
       0.Exit.
       ''')
 
@@ -22,7 +24,7 @@ while character.hp > 0:
     select_road = int(input("Select: "))
     if select_road == 1:
         print(str(character))
-    if select_road == 3:
+    elif select_road == 3:
         test_enemy = Enemy(100, 100, 20, 20)
         while test_enemy.hp > 0 and character.hp > 0:
             test_enemy.hp -= character.dmg
@@ -34,6 +36,10 @@ while character.hp > 0:
             character.exp += test_enemy.exp
         elif character.hp <= 0:
             print("You LOSE")
+    elif select_road == 4:
+        pass
+    elif select_road == 5:
+        pass
     elif select_road == 0:
         break
     else:

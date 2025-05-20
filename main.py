@@ -1,5 +1,11 @@
 from character import Character
 from enemy import Enemy
+from weapon import Weapon
+from item import Item
+
+wepon1 = Weapon("Night Bringer Edge", 100, 20, 1, "weapon")
+
+Weapon.test(2)
 
 print("Hello!")
 print("Choose your class:")
@@ -25,19 +31,9 @@ while character.hp > 0:
     if select_road == 1:
         print(str(character))
     elif select_road == 3:
-        test_enemy = Enemy(100, 100, 20, 20)
-        while test_enemy.hp > 0 and character.hp > 0:
-            test_enemy.hp -= character.dmg
-            character.hp -= test_enemy.dmg
-            print(f"Your hp{character.hp} Enemy hp{test_enemy.hp}")
-        if test_enemy.hp <= 0:
-            print("You WIN")
-            character.gold += test_enemy.gold
-            character.exp += test_enemy.exp
-        elif character.hp <= 0:
-            print("You LOSE")
+        Enemy.fight(character)
     elif select_road == 4:
-        pass
+        Item.shop(character, wepon1)
     elif select_road == 5:
         pass
     elif select_road == 0:

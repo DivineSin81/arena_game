@@ -28,4 +28,4 @@ class Character:
 
 
 Warrior_class = Character("Warrior", 250, 250, 100, 0, 1, 0, 100)
-Archer_class = Character("Archer", 150, 150, 200, 0, 1, 0, 100)
+Archer_class = Character("Archer", 150, 150, 200, 60, 1, 0, 100)

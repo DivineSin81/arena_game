@@ -26,6 +26,18 @@ class Character:
         else:
             raise OverflowError('Sorry choosen class doesnt exists')
 
+    def class_select_function():
+        print("Hello!\nChoose your class:\n1.Warrior\n2.Archer")
+        while True:
+            try:
+                select_class = int(input("Choose your class: "))
+                character = Character.class_select(select_class)
+                if character:
+                    return character
+                else:
+                    print("Invalid class selection.")
+            except ValueError:
+                print("Please enter a valid number.")
 
 Warrior_class = Character("Warrior", 250, 250, 100, 0, 1, 0, 100)
 Archer_class = Character("Archer", 150, 150, 200, 60, 1, 0, 100)

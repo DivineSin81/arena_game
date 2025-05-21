@@ -1,5 +1,3 @@
-import csv
-
 class Item:
     def __init__(self, item_name, item_price, quantity, type):
         assert item_price >= 0, f"Item {item_name} is cheaper than 0!!!"

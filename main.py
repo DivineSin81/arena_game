@@ -2,12 +2,12 @@ from character import Character
 from enemy import Enemy
 import shell_game
 import shop
-import texts
+import game_utils
 
 
 def main_loop(character):
     while character.hp > 0:
-        texts.path()
+        game_utils.path()
         try:
             select_road = int(input("Select: "))
             if select_road == 1:
@@ -27,5 +27,5 @@ def main_loop(character):
 
 
 if __name__ == "__main__":
-    character = Character.class_select_function()
+    character = Character.select_class()
     main_loop(character)

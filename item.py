@@ -2,18 +2,33 @@ class Item:
     def __init__(self, item_name, item_price, quantity, type):
         assert item_price >= 0, f"Item {item_name} is cheaper than 0!!!"
 
-        self.item_name = item_name
-        self.item_price = item_price
-        self.quantity = quantity
-        self.type = type
+        self._item_name = item_name
+        self._item_price = item_price
+        self._quantity = quantity
+        self._type = type
 
-    def shop(self, item):
-        if item.type == "weapon":
-            if self.gold >= item.item_price:
-                self.dmg += item.item_dmg
-                self.gold -= item.item_price
-                print(f"You bought {item.item_name}")
-            else:
-                print("Sorry, you don't have enought money")
-        elif type == "armor":
-            pass
+    @property
+    def item_name(self):
+        return self._item_name
+    
+    @property
+    def item_price(self):
+        return self.item_price
+
+    @item_price.setter
+    def item_price(self, value):
+        assert value >= 0, f"Item {self.item_name} price cannot be negative"
+        self._item_price = value
+
+    @property
+    def quantity(self):
+        return self._quantity
+    
+    @quantity.setter
+    def quantity(self, value):
+        assert value >= 0, f"Quantity of item {self.item_name} cannot be negative"
+        self._quantity = value
+
+    @property
+    def type(self):
+        return self._type

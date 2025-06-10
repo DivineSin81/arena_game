@@ -6,7 +6,7 @@ def shell_game(character):
     print("Let's gamble!")
     bet = int(input("What is your bet? "))
     while bet > 0 and bet <= character.gold:
-        print("Okey, we have 3 cups. Let's guess under witch one is gold.")
+        print("Okey, we have 3 cups. Let's guess under which one is gold.")
         cups = [0, 0, 1]
         random.shuffle(cups)
         print("[0] [1] [2]")

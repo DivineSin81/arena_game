@@ -1,3 +1,6 @@
+import game_utils
+
+
 class Character:
     def __init__(self, name, hp, maxhp, dmg, gold, lvl, exp, maxexp):
         self._name = name
@@ -90,12 +93,10 @@ class Character:
         print("Hello!\nChoose your class:\n1.Warrior\n2.Archer")
         while True:
             try:
-                select_class = int(input("Choose your class: "))
+                select_class = game_utils.get_valid_input("Choose your class: ", [1, 2])
                 if select_class == 1:
                     return Character("Warrior", 250, 250, 100, 0, 1, 0, 100)
                 elif select_class == 2:
                     return Character("Archer", 150, 150, 200, 60, 1, 0, 100)
-                else:
-                    print("Invalid class selection.")
             except ValueError:
                 print("Please enter a valid number.")

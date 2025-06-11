@@ -13,7 +13,7 @@ class Item:
     
     @property
     def item_price(self):
-        return self.item_price
+        return self._item_price
 
     @item_price.setter
     def item_price(self, value):

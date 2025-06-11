@@ -4,7 +4,7 @@ from weapon import Weapon
 
 
 def select_shop(character):
-    print("Do you want to better protect yourself or deale more dmg?\n[1] Armor Shop\n[2] Weapon Shop\n[0] Exit")
+    print("Do you want to better protect yourself or deal more dmg?\n[1] Armor Shop\n[2] Weapon Shop\n[0] Exit")
     try:
         select = game_utils.get_valid_input("", [0, 1, 2])
         if select == 1:
@@ -24,7 +24,8 @@ def shop_menu(character, item_type, item_list):
     
     for index, item in enumerate(available_items):
         stat = item.item_dmg if item_type == "weapon" else item.item_def
-        print(f"[{index}] {item.item_name} - {'DMG' if item_type == 'weapon' else 'DEF'}: {stat}, Price: {item.item_price}")
+        sub_stat = item.item_crit_chance if item_type == "weapon" else item.item_sub_stat
+        print(f"[{index}] {item.item_name} - {'DMG' if item_type == 'weapon' else 'DEF'}: {stat}, {'Crit chance' if item_type == 'weapon' else 'Dodge/Block chance'}: {sub_stat * 100}%, Price: {item.item_price}")
 
     try:
         buy = int(input(f"\nSelect the index of the {item_type} you want (-1 to cancel): "))
@@ -41,10 +42,8 @@ def shop_menu(character, item_type, item_list):
         return
     
     character.gold -= selected_item.item_price
-    if item_type == "weapon":
-        character.dmg += selected_item.item_dmg
-    else:
-        character.maxhp += selected_item.item_def
     selected_item.quantity -= 1
+    character.add_to_inventory(selected_item)
+    character.equip_item(selected_item)
 
-    print(f"\nYou bought {selected_item.item_name}! Your {'dmg' if item_type == 'weapon' else 'max HP'} increased to {character.dmg if item_type == 'weapon' else character.maxhp}. Gold left: {character.gold}")
+    print(f"\nYou bought {selected_item.item_name}! Your {'dmg' if item_type == 'weapon' else 'max HP'} increased to {character.dmg if item_type == 'weapon' else character.maxhp}. Your {'critical chance' if item_type == 'weapon' else 'Dodge/Block chance'} to {character.crit_chance * 100 if item_type == 'weapon' else character.dodge_chance * 100}% Gold left: {character.gold}")

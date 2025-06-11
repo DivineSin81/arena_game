@@ -1,12 +1,14 @@
 from item import Item
 
+
 class Armor(Item):
     all = []
 
-    def __init__(self, item_name, item_def, item_price, quantity, type = "armor"):
+    def __init__(self, item_name, item_def, item_sub_stat, item_price, quantity, type = "armor"):
         super().__init__(item_name, item_price, quantity, type)
 
         self._item_def = item_def
+        self._item_sub_stat = item_sub_stat
 
         Armor.all.append(self)
 
@@ -18,10 +20,18 @@ class Armor(Item):
     def item_def(self, value):
         self._item_def = max(0, value)
 
+    @property
+    def item_sub_stat(self):
+        return self._item_sub_stat
+    
+    @item_sub_stat.setter
+    def item_sub_stat(self, value):
+        self._item_sub_stat = max(0, value)
+
     def __repr__(self):
         index = Armor.all.index(self)
-        return f"\n{index}  {self.__class__.__name__}('{self.item_name}', {self.item_def}, {self.item_price}, {self.quantity})"
+        return f"\n{index}  {self.__class__.__name__}('{self._item_name}', {self._item_def}, {self._item_sub_stat}, {self._item_price}, {self._quantity})"
     
 
-armor1 = Armor("Night Brinder Armor", 20, 40, 1, "armor")
-armor2 = Armor("Void Armor", 100, 50, 1, "armor")
+Armor("Night Brinder Armor", 20, 0.1, 40, 1, "armor")
+Armor("Void Armor", 100, 0.2, 50, 1, "armor")

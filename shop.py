@@ -27,16 +27,13 @@ def shop_menu(character, item_type, item_list):
         sub_stat = item.item_crit_chance if item_type == "weapon" else item.item_sub_stat
         print(f"[{index}] {item.item_name} - {'DMG' if item_type == 'weapon' else 'DEF'}: {stat}, {'Crit chance' if item_type == 'weapon' else 'Dodge/Block chance'}: {sub_stat * 100}%, Price: {item.item_price}")
 
-    try:
-        buy = int(input(f"\nSelect the index of the {item_type} you want (-1 to cancel): "))
-        if buy == -1:
-            print("You left the shop.")
-            return
-        selected_item = available_items[buy]
-    except (ValueError, IndexError):
-        print("Invalid selection.")
+    buy = game_utils.get_valid_input(f"\nSelect the index of the {item_type} you want (-1 to cancel): ", [-1] + list(range(len(available_items))))
+        
+    if buy == -1:
+        print("You left the shop.")
         return
-    
+        
+    selected_item = available_items[buy]  
     if character.gold < selected_item.item_price:
         print("Not enough gold!")
         return

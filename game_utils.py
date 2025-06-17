@@ -23,10 +23,15 @@ def get_valid_input(prompt, valid_options):
             print("Please enter a valid number.")
 
 def tavern(character):
-    print(f"In Tavern you can be healed to max HP. But it cost {character.lvl * 15}")
+    cost = character.lvl * 15
+    print(f"In Tavern you can be healed to max HP. But it cost {cost} gold")
     heal_choice = get_valid_input("Do you want to be healed?\n[1] Yes\n[2] No\n", [1, 2])
     if heal_choice == 1:
-        character.hp = character.maxhp
-        print("Healed")
+        if character.gold >= cost:
+            character.gold -= cost
+            character.hp = character.maxhp
+            print("Healed")
+        else:
+            print("Not enough gold to heal!")
     else:
-        return
+        print("You leave the tavern.")

@@ -5,6 +5,7 @@ from armor import Armor
 
 
 def save_game(character):
+    """Save the character's state to a JSON file."""
     try:
         with open("save.json", "w") as f:
             json.dump({
@@ -19,7 +20,7 @@ def save_game(character):
                 "exp": character.exp,
                 "maxexp": character.maxexp,
                 "equiped_weapon": character.equiped_weapon.item_name if character.equiped_weapon else None,
-                "equiped_armor": character.equiped_armor.item_bane if character.equiped_armor else None,
+                "equiped_armor": character.equiped_armor.item_name if character.equiped_armor else None,
                 "inventory": [
                     {
                         "item_name": item.item_name,
@@ -38,6 +39,7 @@ def save_game(character):
         print(f"Failed to save game: {e}")
 
 def load_game():
+    """Load the character's state from a JSON file."""
     try:
         with open("save.json", "r") as f:
             data = json.load(f)
@@ -52,9 +54,6 @@ def load_game():
                 data["lvl"],
                 data["exp"],
                 data["maxexp"],
-                data["equiped_weapon"],
-                data["equiped_armor"],
-                data["inventory"]
             )
             for item_data in data.get("inventory", []):
                 if item_data["type"] == "weapon":

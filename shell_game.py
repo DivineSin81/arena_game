@@ -3,6 +3,7 @@ from game_utils import get_valid_input
 
 
 def shell_game(character):
+    """Play a shell game where the player bets gold to guess the correct cup."""
     print("Let's gamble!")
     try:
         bet = get_valid_input("What is your bet? ", range(1, character.gold + 1))

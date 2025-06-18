@@ -3,9 +3,11 @@ from copy import deepcopy
 
 
 class Enemy:
+    """Represents an enemy in the game with attributes like health, damage and fight system"""
     all_enemies = []
 
     def __init__(self, name, hp, dmg, crit_chance, dodge_chance, exp, gold):
+        """Initialize an enemy with given attributes."""
         self._name = name
         self._hp = hp
         self._dmg = dmg
@@ -18,42 +20,52 @@ class Enemy:
 
     @property
     def name(self):
+        """Get the enemy's name."""
         return self._name
     
     @property
     def hp(self):
+        """Get the enemy's current HP."""
         return self._hp
     
     @hp.setter
     def hp(self, value):
+        """Set the enemy's HP, ensuring it stays non-negative."""
         self._hp = max(0, value)
 
     @property
     def dmg(self):
+        """Get the enemy's damage."""
         return self._dmg
     
     @property
     def crit_chance(self):
+        """Get the enemy's critical chance."""
         return self._crit_chance
     
     @property
     def dodge_chance(self):
+        """Get the enemy's dodge chance."""
         return self._dodge_chance
     
     @property
     def exp(self):
+        """Get the experience points awarded for defeating the enemy."""
         return self._exp
     
     @property
     def gold(self):
+        """Get the gold awarded for defeating the enemy."""
         return self._gold
     
     @property
     def is_alive(self):
+        """Check if enemy is still alive."""
         return self._hp > 0
     
     @staticmethod
     def _perform_attack(attacker, target, attacker_name, target_name):
+        """Perform an attack, handling dodge and critical damage"""
         if random.random() <= target.dodge_chance:
             print(f"{target_name} dodged {attacker_name} attack")
             return
@@ -70,6 +82,7 @@ class Enemy:
 
     @classmethod
     def fight(cls, character):
+        """Simulate a fight between the character and a random enemy."""
         enemy = deepcopy(random.choice(cls.all_enemies))
         print(f"You encounter a {enemy.name}! Your HP: {character.hp}, Enemy HP: {enemy.hp}")
 

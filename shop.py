@@ -4,6 +4,7 @@ from weapon import Weapon
 
 
 def select_shop(character):
+    """Prompt the user to select a shop type."""
     print("Do you want to better protect yourself or deal more dmg?\n[1] Armor Shop\n[2] Weapon Shop\n[0] Exit")
     try:
         select = game_utils.get_valid_input("", [0, 1, 2])
@@ -15,6 +16,7 @@ def select_shop(character):
         print("Invalid Selection.")
 
 def shop_menu(character, item_type, item_list):
+    """Handle purchases in the shop."""
     available_items = [item for item in item_list if item.quantity > 0]
     print(f"Welcome to the {item_type.capitalize()} Shop!")
 

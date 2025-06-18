@@ -7,6 +7,7 @@ import game_utils
 
 
 def main_loop(character):
+    """Handle the user's menu choice and update the character accordingly."""
     while character.hp > 0:
         game_utils.path()
         select_road = game_utils.get_valid_input("Select: ", [0, 1, 2, 3, 4, 5, 6, 7])
@@ -31,6 +32,7 @@ def main_loop(character):
 
 
 if __name__ == "__main__":
+    """Initialize and start the game."""
     character = Character.select_class()
     while True:
         character = main_loop(character)

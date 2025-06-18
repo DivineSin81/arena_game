@@ -1,4 +1,5 @@
 def path():
+    """Display the main game menu."""
     print(f'''
         What you wanna do?
         [1] Check Stats.
@@ -12,6 +13,7 @@ def path():
         ''')
     
 def get_valid_input(prompt, valid_options):
+    """Get a valid integet input from the user."""
     while True:
         try:
             choice = int(input(prompt))
@@ -23,6 +25,7 @@ def get_valid_input(prompt, valid_options):
             print("Please enter a valid number.")
 
 def tavern(character):
+    """Allow the character to heal in the tavern for a cost."""
     cost = character.lvl * 15
     print(f"In Tavern you can be healed to max HP. But it cost {cost} gold")
     heal_choice = get_valid_input("Do you want to be healed?\n[1] Yes\n[2] No\n", [1, 2])

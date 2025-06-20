@@ -9,7 +9,7 @@ class TestCharacter(unittest.TestCase):
 
     def setUp(self):
         """Set up a test character and items before each test."""
-        self.character = Character("Test", 100, 100, 50, 0.1, 0.1, 100, 1, 0, 100, None, None, [])
+        self.character = Character("Test Character", 100, 100, 50, 0.1, 0.1, 100, 1, 0, 100, None, None, [])
         self.weapon = Weapon("Test Weapon", 100, 0.2, 50, 1)
         self.armor = Armor("Test Armor", 50, 0.2, 50, 1)
 

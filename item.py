@@ -3,11 +3,9 @@ class Item:
 
     def __init__(self, item_name, item_price, quantity, type):
         """Initialize an item with given attributes."""
-        assert item_price >= 0, f"Item {item_name} is cheaper than 0!!!"
-
         self._item_name = item_name
-        self._item_price = item_price
-        self._quantity = quantity
+        self._item_price = max(0, item_price)
+        self._quantity = max(0, quantity)
         self._type = type
 
     @property
@@ -23,8 +21,7 @@ class Item:
     @item_price.setter
     def item_price(self, value):
         "Set the item's price, ensuring it stays non-negative."
-        assert value >= 0, f"Item {self.item_name} price cannot be negative"
-        self._item_price = value
+        self._item_price = max(0, value)
 
     @property
     def quantity(self):
@@ -34,8 +31,7 @@ class Item:
     @quantity.setter
     def quantity(self, value):
         """Set the item's quantity, ensuring it stays non-negative."""
-        assert value >= 0, f"Quantity of item {self.item_name} cannot be negative"
-        self._quantity = value
+        self._quantity = max(0, value)
 
     @property
     def type(self):

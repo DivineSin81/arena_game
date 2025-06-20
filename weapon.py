@@ -9,8 +9,8 @@ class Weapon(Item):
         """Initialize a weapon with given attributes."""
         super().__init__(item_name, item_price, quantity, type)
 
-        self._item_dmg = item_dmg
-        self._item_crit_chace = item_crit_chance
+        self._item_dmg = max(0, item_dmg)
+        self._item_crit_chace = max(0, item_crit_chance)
 
         Weapon.all.append(self)
 

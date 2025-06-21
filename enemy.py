@@ -9,12 +9,12 @@ class Enemy:
     def __init__(self, name, hp, dmg, crit_chance, dodge_chance, exp, gold):
         """Initialize an enemy with given attributes."""
         self._name = name
-        self._hp = hp
-        self._dmg = dmg
-        self._crit_chance = crit_chance
-        self._dodge_chance = dodge_chance
-        self._exp = exp
-        self._gold = gold
+        self._hp = max(0, hp)
+        self._dmg = max(0, dmg)
+        self._crit_chance = max(0, crit_chance)
+        self._dodge_chance = max(0, dodge_chance)
+        self._exp = max(0, exp)
+        self._gold = max(0, gold)
 
         Enemy.all_enemies.append(self)
 
@@ -38,15 +38,30 @@ class Enemy:
         """Get the enemy's damage."""
         return self._dmg
     
+    @dmg.setter
+    def dmg(self, value):
+        """Set the enemy's dmg, ensuring it stays non-negative."""
+        self._dmg = max(0, value)
+    
     @property
     def crit_chance(self):
         """Get the enemy's critical chance."""
         return self._crit_chance
     
+    @crit_chance.setter
+    def crit_chance(self, value):
+        """Set the enemy's crit_chance, ensuring it stays non-negative."""
+        self._crit_chance = max(0, value)
+    
     @property
     def dodge_chance(self):
         """Get the enemy's dodge chance."""
         return self._dodge_chance
+    
+    @dodge_chance.setter
+    def dodge_chance(self, value):
+        """Set the enemy's dodge_chance, ensuring it stays non-negative."""
+        self._dodge_chance = max(0, value)
     
     @property
     def exp(self):
@@ -71,7 +86,7 @@ class Enemy:
             return
         
         if random.random() < attacker.crit_chance:
-            damage = attacker.dmg * 1.5
+            damage = int(attacker.dmg * 1.5)
             print(f"{attacker_name} lands a critical hit for {damage} damage on {target_name}!")
         else:
             damage = attacker.dmg

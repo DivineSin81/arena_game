@@ -9,8 +9,8 @@ class Armor(Item):
         """Initialize armor with given attributes."""
         super().__init__(item_name, item_price, quantity, type)
 
-        self._item_def = item_def
-        self._item_sub_stat = item_sub_stat
+        self._item_def = max(0, item_def)
+        self._item_sub_stat = max(0, item_sub_stat)
 
         Armor.all.append(self)
 
